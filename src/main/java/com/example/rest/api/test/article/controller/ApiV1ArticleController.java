@@ -27,7 +27,7 @@ public class ApiV1ArticleController {
     }
 
     @GetMapping("/{id}")
-    public ArticleDTO getArticles() {
+    public ArticleDTO getArticles(@PathVariable("id") Long id) {
         Article article = new Article("제목", "내용");
         ArticleDTO articleDTO = new ArticleDTO(article);
         return articleDTO;
@@ -39,12 +39,12 @@ public class ApiV1ArticleController {
     }
 
     @PatchMapping("/{id}")
-    public String modify() {
+    public String modify(@PathVariable("id") Long id) {
         return "수정";
     }
 
     @DeleteMapping("/{id}")
-    public String delete() {
+    public String delete(@PathVariable("id") Long id) {
         return "삭제";
     }
 }
