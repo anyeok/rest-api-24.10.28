@@ -3,6 +3,9 @@ package com.example.rest.api.test.article.controller;
 import com.example.rest.api.test.article.dto.ArticleDTO;
 import com.example.rest.api.test.article.entity.Article;
 import com.example.rest.api.test.article.service.ArticleService;
+import com.example.rest.api.test.global.RsData.RsData;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,29 +18,48 @@ import java.util.List;
 public class ApiV1ArticleController {
     private final ArticleService articleService;
 
+    @AllArgsConstructor
+    @Getter
+    public static class ArticlesResponse {
+        private final List<ArticleDTO> articleList;
+    }
+
     @GetMapping("")
-    public List<ArticleDTO> list() {
+    public RsData<ArticlesResponse> list() {
         List<ArticleDTO> articleList = new ArrayList<>();
 
-        articleList.add(new ArticleDTO(new Article("제목 1", "내용 1")));
-        articleList.add(new ArticleDTO(new Article("제목 2", "내용 2")));
-        articleList.add(new ArticleDTO(new Article("제목 3", "내용 3")));
+        Article article1 = new Article("제목1", "내용1");
+        articleList.add(new ArticleDTO(article1));
 
-        return articleList;
+        Article article2 = new Article("제목2", "내용2");
+        articleList.add(new ArticleDTO(article2));
+
+        Article article3 = new Article("제목3", "내용3");
+        articleList.add(new ArticleDTO(article3));
+
+        return RsData.of("200", "게시글 다건 조회 성공", new ArticlesResponse(articleList));
+    }
+
+    @Getter
+    @AllArgsConstructor
+    public static class ArticleResponse {
+        private  final ArticleDTO article;
     }
 
     @GetMapping("/{id}")
-    public ArticleDTO getArticles(@PathVariable("id") Long id) {
-        Article article = new Article("제목", "내용");
+    public RsData<ArticleResponse> getArticle(@PathVariable("id") Long id) {
+        Article article = new Article("제목1", "내용1");
+
         ArticleDTO articleDTO = new ArticleDTO(article);
-        return articleDTO;
+
+        return RsData.of("200", "게시글 단건 조회 성공", new ArticleResponse(articleDTO));
     }
 
     @PostMapping("")
     public String create(@RequestParam("subject") String subject, @RequestParam("content") String content) {
         System.out.println(subject);
         System.out.println(content);
-        return "등록 완료";
+        return "등록완료";
     }
 
     @PatchMapping("/{id}")
@@ -45,12 +67,13 @@ public class ApiV1ArticleController {
         System.out.println(id);
         System.out.println(subject);
         System.out.println(content);
-        return "수정 완료";
+        return "수정완료";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") Long id) {
         System.out.println(id);
-        return "삭제 완료";
+
+        return "삭제완료";
     }
 }
