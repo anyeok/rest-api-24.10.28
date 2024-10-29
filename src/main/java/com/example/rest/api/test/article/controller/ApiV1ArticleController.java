@@ -1,8 +1,10 @@
 package com.example.rest.api.test.article.controller;
 
 import com.example.rest.api.test.article.dto.ArticleDTO;
+import com.example.rest.api.test.article.entity.Article;
 import com.example.rest.api.test.article.request.ArticleCreateRequest;
 import com.example.rest.api.test.article.request.ArticleModifyRequest;
+import com.example.rest.api.test.article.response.ArticleCreateResponse;
 import com.example.rest.api.test.article.response.ArticleResponse;
 import com.example.rest.api.test.article.response.ArticlesResponse;
 import com.example.rest.api.test.article.service.ArticleService;
@@ -29,15 +31,16 @@ public class ApiV1ArticleController {
 
     @GetMapping("/{id}")
     public RsData<ArticleResponse> getArticle(@PathVariable("id") Long id) {
-        ArticleDTO articleDTO = this.articleService.getArticle(id);
+        ArticleDTO  articleDTO = this.articleService.getArticle(id);
 
         return RsData.of("200", "게시글 단건 조회 성공", new ArticleResponse(articleDTO));
     }
 
     @PostMapping("")
-    public String create(@Valid @RequestBody ArticleCreateRequest articleCreateRequest) {
+    public RsData<ArticleCreateResponse> create(@Valid @RequestBody ArticleCreateRequest articleCreateRequest) {
+        Article article = this.articleService.write(articleCreateRequest.getSubject(), articleCreateRequest.getContent());
 
-        return "등록완료";
+        return RsData.of("200", "등록성공", new ArticleCreateResponse(article));
     }
 
     @PatchMapping("/{id}")
