@@ -41,16 +41,6 @@ public class ArticleService {
         return article;
     }
 
-    public Article write(String subject, String content, Member member) {
-        Article article = Article.builder()
-                .subject(subject)
-                .content(content)
-                .member(member)
-                .build();
-        this.articleRepository.save(article);
-        return article;
-    }
-
     public Article update(Article article, String content, String subject) {
         article.setSubject(subject);
         article.setContent(content);

@@ -35,7 +35,6 @@ public class ApiV1ArticleController {
         return RsData.of("200", "게시글 다건 조회 성공", new ArticlesResponse(articleList));
     }
 
-
     @GetMapping("/{id}")
     @Operation(summary = "게시글 단건 조회")
     public RsData<ArticleResponse> getArticle(@PathVariable("id") Long id) {
