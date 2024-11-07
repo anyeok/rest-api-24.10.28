@@ -1,6 +1,6 @@
-package com.example.rest.api.test.article.response;
+package com.example.rest.api.test.domain.article.dto.response;
 
-import com.example.rest.api.test.article.entity.Article;
+import com.example.rest.api.test.domain.article.entity.Article;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

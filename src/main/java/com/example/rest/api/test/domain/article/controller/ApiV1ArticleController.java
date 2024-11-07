@@ -1,14 +1,14 @@
-package com.example.rest.api.test.article.controller;
+package com.example.rest.api.test.domain.article.controller;
 
-import com.example.rest.api.test.article.dto.ArticleDTO;
-import com.example.rest.api.test.article.entity.Article;
-import com.example.rest.api.test.article.request.ArticleCreateRequest;
-import com.example.rest.api.test.article.request.ArticleModifyRequest;
-import com.example.rest.api.test.article.response.ArticleCreateResponse;
-import com.example.rest.api.test.article.response.ArticleModifyResponse;
-import com.example.rest.api.test.article.response.ArticleResponse;
-import com.example.rest.api.test.article.response.ArticlesResponse;
-import com.example.rest.api.test.article.service.ArticleService;
+import com.example.rest.api.test.domain.article.dto.ArticleDTO;
+import com.example.rest.api.test.domain.article.entity.Article;
+import com.example.rest.api.test.domain.article.dto.request.ArticleCreateRequest;
+import com.example.rest.api.test.domain.article.dto.request.ArticleModifyRequest;
+import com.example.rest.api.test.domain.article.dto.response.ArticleCreateResponse;
+import com.example.rest.api.test.domain.article.dto.response.ArticleModifyResponse;
+import com.example.rest.api.test.domain.article.dto.response.ArticleResponse;
+import com.example.rest.api.test.domain.article.dto.response.ArticlesResponse;
+import com.example.rest.api.test.domain.article.service.ArticleService;
 import com.example.rest.api.test.global.RsData.RsData;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -1,10 +1,10 @@
-package com.example.rest.api.test.article.request;
+package com.example.rest.api.test.domain.article.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class ArticleCreateRequest {
+public class ArticleModifyRequest {
     @NotBlank
     private String subject;
     @NotBlank

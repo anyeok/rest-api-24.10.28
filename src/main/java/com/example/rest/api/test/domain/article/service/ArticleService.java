@@ -1,8 +1,9 @@
-package com.example.rest.api.test.article.service;
+package com.example.rest.api.test.domain.article.service;
 
-import com.example.rest.api.test.article.dto.ArticleDTO;
-import com.example.rest.api.test.article.entity.Article;
-import com.example.rest.api.test.article.repository.ArticleRepository;
+import com.example.rest.api.test.domain.article.dto.ArticleDTO;
+import com.example.rest.api.test.domain.article.entity.Article;
+import com.example.rest.api.test.domain.article.repository.ArticleRepository;
+import com.example.rest.api.test.domain.member.entity.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,16 @@ public class ArticleService {
                 .build();
         this.articleRepository.save(article);
 
+        return article;
+    }
+
+    public Article write(String subject, String content, Member member) {
+        Article article = Article.builder()
+                .subject(subject)
+                .content(content)
+                .member(member)
+                .build();
+        this.articleRepository.save(article);
         return article;
     }
 

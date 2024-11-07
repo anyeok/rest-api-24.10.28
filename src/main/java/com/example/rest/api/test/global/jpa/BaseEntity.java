@@ -19,10 +19,8 @@ public class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @CreatedDate
     private LocalDateTime createdDate;
-
     @LastModifiedDate
     private LocalDateTime modifiedDate;
 }
