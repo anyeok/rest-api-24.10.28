@@ -21,6 +21,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
     private final HttpServletRequest req;
     private final HttpServletResponse resp;
     private final MemberService memberService;
+
     @Override
     @SneakyThrows
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) {
@@ -50,13 +51,18 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
     }
 
     private String _getCookie(String name) {
-        Cookie[] cookies = req.getCookies();
+        Cookie[] cookies = req.getCookies();  // 쿠키 배열을 가져옵니다.
 
-        return Arrays.stream(cookies)
+        // 쿠키 배열이 null인 경우를 처리합니다.
+        if (cookies == null) {
+            return "";  // null이면 빈 문자열을 반환
+        }
+
+        return Arrays.stream(cookies)  // cookies가 null이 아니므로 스트림을 사용할 수 있습니다.
                 .filter(cookie -> cookie.getName().equals(name))
                 .findFirst()
                 .map(Cookie::getValue)
-                .orElse("");
+                .orElse("");  // 해당 이름의 쿠키가 없으면 빈 문자열을 반환
     }
 
     private void _addHeaderCookie(String tokenName, String token) {
